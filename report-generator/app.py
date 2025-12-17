@@ -10,11 +10,12 @@ from jinja2.sandbox import SandboxedEnvironment
 
 
 app = Flask(__name__)
+app_root = '/report-generator'
 app.secret_key = 'hospital_reports_secret_key'
 app.config['APPLICATION_ROOT'] = '/report-generator'
 
 # Configuration
-PATIENT_PORTAL_URL = os.environ.get('PATIENT_PORTAL_URL', 'http://localhost:5001')
+PATIENT_PORTAL_URL = os.environ.get('PATIENT_PORTAL_URL', 'http://localhost:5001/')
 API_KEY = 'internal_hospital_api_key'
 
 # Routes
@@ -22,11 +23,15 @@ API_KEY = 'internal_hospital_api_key'
 def index():
     return render_template('index.html')
 
-@app.route('/reports')
+@app.route(f'{app_root}/')
+def back_to_index():
+    return redirect("/")
+
+@app.route(f'{app_root}/reports')
 def reports():
     return render_template('reports.html')
 
-@app.route('/standard_report', methods=['GET', 'POST'])
+@app.route(f'{app_root}/standard_report', methods=['GET', 'POST'])
 def standard_report():
     if request.method == 'POST':
         patient_id = request.form['patient_id']
@@ -52,7 +57,7 @@ def standard_report():
     
     return render_template('standard_report_form.html')
 
-@app.route('/custom_report', methods=['GET', 'POST'])
+@app.route(f'{app_root}/custom_report', methods=['GET', 'POST'])
 def custom_report():
     if request.method == 'POST':
         patient_id = request.form['patient_id']
@@ -73,7 +78,7 @@ def custom_report():
 def get_patient_data(patient_id):
     try:
         response = requests.get(
-            f"{PATIENT_PORTAL_URL}/api/patient/{patient_id}",
+            f"{PATIENT_PORTAL_URL}{app_root}/api/patient/{patient_id}",
             headers={'X-API-KEY': API_KEY}
         )
         
@@ -85,4 +90,4 @@ def get_patient_data(patient_id):
         return None
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80) 
+    app.run(host='0.0.0.0', port=5001) 
