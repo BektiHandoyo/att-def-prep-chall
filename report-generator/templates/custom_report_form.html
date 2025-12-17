@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+
+{% block title %}Custom Report - MediSecure Report Generator{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/reports">Reports</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Custom Report</li>
+            </ol>
+        </nav>
+        <h1 class="display-6"><i class="bi bi-pencil-square"></i> Custom Report Generator</h1>
+        <p class="text-muted">Create custom medical reports using your own templates</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-pencil"></i> Template Builder</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-4">
+                        <label for="patient_id" class="form-label">Patient ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                            <input type="number" class="form-control" id="patient_id" name="patient_id" 
+                                   placeholder="Enter patient ID number" required>
+                        </div>
+                        <div class="form-text">
+                            Example: Enter "1" for John Smith, "2" for Mary Johnson, etc.
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="template_content" class="form-label">Custom Template</label>
+                        <textarea class="form-control template-editor" id="template_content" name="template_content" 
+                                  placeholder="Enter your template with Jinja2 variables" required>MediSecure Hospital
+{{ "{{ name }}" }} - Medical Report
+
+Date of Birth: {{ "{{ dob }}" }}
+Gender: {{ "{{ gender }}" }}
+Blood Type: {{ "{{ blood_type }}" }}
+
+Current Diagnosis:
+{{ "{{ diagnosis }}" }}
+
+Allergies: {{ "{{ allergies }}" }}</textarea>
+                        <div class="form-text">
+                            Use template variables like {{ "{{ name }}" }}, {{ "{{ dob }}" }}, {{ "{{ diagnosis }}" }} to include patient data.
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-file-earmark-plus"></i> Generate Custom Report
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-info-circle"></i> Available Variables</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <p class="small mb-2">You can use the following variables in your template:</p>
+                    <ul class="list-group list-group-flush small">
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ id }}" }}</code> 
+                            <span class="text-muted">Patient ID</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ name }}" }}</code> 
+                            <span class="text-muted">Full name</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ dob }}" }}</code> 
+                            <span class="text-muted">Date of birth</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ gender }}" }}</code> 
+                            <span class="text-muted">Gender</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ blood_type }}" }}</code> 
+                            <span class="text-muted">Blood type</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ address }}" }}</code> 
+                            <span class="text-muted">Address</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ phone }}" }}</code> 
+                            <span class="text-muted">Phone number</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ insurance }}" }}</code> 
+                            <span class="text-muted">Insurance info</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ allergies }}" }}</code> 
+                            <span class="text-muted">Allergies</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-2">
+                            <code>{{ "{{ diagnosis }}" }}</code> 
+                            <span class="text-muted">Current diagnosis</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card shadow">
+            <div class="card-header bg-danger text-white">
+                <h5 class="m-0"><i class="bi bi-exclamation-triangle"></i> Advanced Feature</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    <p class="small mb-0">The custom template generator is an advanced feature intended for technical users. Please ensure your templates follow proper formatting guidelines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}Reports - MediSecure Report Generator{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/report-generator/">Home</a></li>
+                <li class="breadcrumb-item active">Reports</li>
+            </ol>
+        </nav>
+        <h1 class="display-6"><i class="bi bi-file-earmark-text"></i> Available Reports</h1>
+        <p class="lead text-muted">Choose from our standard report templates or create a custom report</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-file-medical"></i> Standard Reports</h5>
+            </div>
+            <div class="card-body">
+                <p>Our standard reports are pre-formatted templates designed for common medical documentation needs. These reports maintain consistency and ensure all required information is included.</p>
+                <div class="list-group mb-3">
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Medical Summary</h6>
+                            <small class="text-muted">Most Popular</small>
+                        </div>
+                        <p class="mb-1">Comprehensive overview of patient's medical history and current status.</p>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Insurance Report</h6>
+                            <small class="text-muted">For Claims</small>
+                        </div>
+                        <p class="mb-1">Specialized format for insurance claims and billing purposes.</p>
+                    </div>
+                </div>
+                <a href="/report-generator/standard_report" class="btn btn-primary">
+                    <i class="bi bi-file-medical"></i> Generate Standard Report
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-pencil-square"></i> Custom Reports</h5>
+            </div>
+            <div class="card-body">
+                <p>Create tailored reports using our custom report generator. You can define your own template and include specific information as needed.</p>
+                <div class="alert alert-info">
+                    <h6><i class="bi bi-info-circle"></i> Custom Report Features</h6>
+                    <ul class="mb-0">
+                        <li>Define your own template format</li>
+                        <li>Include specific patient data fields</li>
+                        <li>Add custom sections and formatting</li>
+                        <li>Save templates for future use</li>
+                    </ul>
+                </div>
+                <a href="/report-generator/custom_report" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i> Create Custom Report
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-shield-check"></i> Report Security</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <h6><i class="bi bi-exclamation-triangle"></i> Important Notice</h6>
+                    <p class="mb-0">All generated reports contain sensitive patient information. Please ensure proper handling and storage of these documents in compliance with HIPAA regulations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

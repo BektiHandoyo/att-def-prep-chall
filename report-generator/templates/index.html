@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - MediSecure Report Generator{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="display-6"><i class="bi bi-file-medical"></i> Medical Report Generator</h1>
+        <p class="lead text-muted">Welcome to the MediSecure Hospital Report Generator System</p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-lg-4">
+                        <img src="https://via.placeholder.com/400x300?text=Medical+Reports" alt="Medical Reports" class="img-fluid rounded">
+                    </div>
+                    <div class="col-lg-8">
+                        <h4>Generate Clinical Documentation</h4>
+                        <p>This system allows medical staff to generate standardized and custom reports for patients, insurance companies, and referring physicians. Our report generator helps maintain consistency, accuracy, and compliance with healthcare documentation standards.</p>
+                        <p>Choose from our standard templates or create custom reports tailored to your specific needs.</p>
+                        <div class="d-flex gap-2">
+                            <a href="/report-generator/standard_report" class="btn btn-primary">
+                                <i class="bi bi-file-medical"></i> Standard Reports
+                            </a>
+                            <a href="/report-generator/custom_report" class="btn btn-outline-primary">
+                                <i class="bi bi-pencil-square"></i> Custom Reports
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <h3><i class="bi bi-card-checklist"></i> Available Report Types</h3>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+    <div class="col">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-clipboard2-data text-primary"></i> Medical Summary</h5>
+                <p class="card-text">Comprehensive overview of patient's medical history, current conditions, medications, and care plan.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="/report-generator/standard_report" class="btn btn-sm btn-outline-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-currency-dollar text-success"></i> Insurance Reports</h5>
+                <p class="card-text">Specialized reports for insurance claims, including diagnosis codes, procedures, and billing information.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="/report-generator/standard_report" class="btn btn-sm btn-outline-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-pencil-square text-info"></i> Custom Reports</h5>
+                <p class="card-text">Create tailored reports with custom templates to meet specific documentation requirements.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="/report-generator/custom_report" class="btn btn-sm btn-outline-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-info-circle"></i> System Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <h6><i class="bi bi-exclamation-triangle"></i> Security Notice</h6>
+                    <p class="mb-0">This system handles sensitive patient health information. All activities are logged for compliance and security purposes.</p>
+                </div>
+                <div class="alert alert-info">
+                    <h6><i class="bi bi-link"></i> Connected Systems</h6>
+                    <p class="mb-0">This report generator is connected to the <a href="/patient-portal/" target="_blank">Patient Records Portal</a> to retrieve patient information.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

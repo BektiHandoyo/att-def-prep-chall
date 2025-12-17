@@ -1,0 +1,14 @@
+{
+  "name": "snbp-checker",
+  "version": "1.0.0",
+  "description": "Web to check SNBP status",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "author": "beluga with cursor <3",
+  "license": "ISC"
+} 

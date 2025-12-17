@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}Standard Report - MediSecure Report Generator{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/report-generator/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/report-generator/reports">Reports</a></li>
+                <li class="breadcrumb-item active">Standard Report</li>
+            </ol>
+        </nav>
+        <h1 class="display-6"><i class="bi bi-file-earmark-text"></i> Generate Standard Report</h1>
+        <p class="text-muted">Select patient and report type</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-file-earmark-medical"></i> Standard Report Generator</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/report-generator/standard_report">
+                    <div class="mb-4">
+                        <label for="patient_id" class="form-label">Patient ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                            <input type="number" class="form-control" id="patient_id" name="patient_id" 
+                                   placeholder="Enter patient ID number" required>
+                        </div>
+                        <div class="form-text">
+                            Example: Enter "1" for John Smith, "2" for Mary Johnson, etc.
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="report_type" class="form-label">Report Type</label>
+                        <select class="form-select" id="report_type" name="report_type" required>
+                            <option value="" selected disabled>Select report type...</option>
+                            <option value="medical_summary">Medical Summary</option>
+                            <option value="insurance">Insurance Report</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="confirmation" required>
+                        <label class="form-check-label" for="confirmation">
+                            I confirm that I have the necessary authorization to generate this report.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-file-earmark-plus"></i> Generate Report
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <h5 class="m-0"><i class="bi bi-info-circle"></i> Report Types</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6><i class="bi bi-clipboard2-data text-primary"></i> Medical Summary</h6>
+                    <p class="small">Comprehensive overview of patient's medical history, current conditions, medications, and treatment plan. Designed for healthcare providers and patient records.</p>
+                </div>
+                <div>
+                    <h6><i class="bi bi-currency-dollar text-success"></i> Insurance Report</h6>
+                    <p class="small">Focused report with diagnosis codes, treatment details, and necessary information for insurance claims processing.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="m-0"><i class="bi bi-shield-lock"></i> Security Notice</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <p class="small mb-0">Report generation is logged and associated with your user account. Only generate reports for patients under your care or with proper authorization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

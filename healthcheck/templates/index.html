@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital System Healthcheck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .section {
+            margin-top: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .healthcheck-form {
+            margin: 20px 0;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        .metrics-container {
+            margin-top: 20px;
+        }
+        .metric-box {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .metric-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .metric-value {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hospital System Healthcheck</h1>
+        
+        <div class="section">
+            <h2>System Metrics</h2>
+            <div class="metrics-container">
+                <button onclick="refreshMetrics()">Refresh Metrics</button>
+                
+                <div class="metric-box">
+                    <div class="metric-title">CPU Usage</div>
+                    <div class="metric-value" id="cpu-usage">Loading...</div>
+                </div>
+                
+                <div class="metric-box">
+                    <div class="metric-title">Memory Usage</div>
+                    <div class="metric-value" id="memory-usage">Loading...</div>
+                </div>
+                
+                <div class="metric-box">
+                    <div class="metric-title">System Uptime</div>
+                    <div class="metric-value" id="uptime">Loading...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Check System Connectivity</h2>
+            <div class="healthcheck-form">
+                <input type="text" id="host" placeholder="Enter hostname or IP (default: localhost)" size="40">
+                <button onclick="checkHealth()">Check</button>
+            </div>
+            <div id="result"></div>
+        </div>
+    </div>
+    
+    <script>
+        function checkHealth() {
+            const host = document.getElementById('host').value || 'localhost';
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = 'Loading...';
+            resultDiv.style.display = 'block';
+            
+            fetch(`/api/healthcheck?host=${encodeURIComponent(host)}`)
+                .then(response => response.json())
+                .then(data => {
+                    let output = `Status: ${data.status}\n`;
+                    output += `Host: ${data.host}\n`;
+                    output += `Response Time: ${data.response_time}\n\n`;
+                    output += `Raw Output:\n${data.output || data.error}`;
+                    
+                    resultDiv.innerHTML = output;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `Error: ${error}`;
+                });
+        }
+        
+        function refreshMetrics() {
+            fetch('/api/system_health')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('cpu-usage').textContent = data.cpu_usage_percent + '%';
+                    
+                    const freeMemMB = Math.round(data.free_memory_kb / 1024);
+                    const totalMemMB = Math.round(data.total_memory_kb / 1024);
+                    const usedMemMB = totalMemMB - freeMemMB;
+                    const memUsagePercent = Math.round((usedMemMB / totalMemMB) * 100) || 0;
+                    document.getElementById('memory-usage').textContent = `${memUsagePercent}% (${usedMemMB}MB / ${totalMemMB}MB)`;
+                    
+                    document.getElementById('uptime').textContent = data.uptime || 'N/A';
+                })
+                .catch(error => {
+                    document.getElementById('cpu-usage').textContent = 'Error';
+                    document.getElementById('memory-usage').textContent = 'Error';
+                    document.getElementById('uptime').textContent = 'Error';
+                    console.error('Error fetching metrics:', error);
+                });
+        }
+        
+        // Load metrics when page loads
+        document.addEventListener('DOMContentLoaded', refreshMetrics);
+    </script>
+</body>
+</html> 

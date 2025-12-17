@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Midnight Crypto</title>
+  <style>
+    body { background:#0f172a; color:#e5e7eb; font-family: monospace }
+    button { padding:8px; margin:5px }
+    input { width: 400px }
+    pre { background:#020617; padding:10px }
+  </style>
+</head>
+<body>
+
+<h2>Midnight Encryption</h2>
+
+<button onclick="getPublic()">Get Public n</button>
+<pre id="n"></pre>
+
+<button onclick="encryptFlag()">Encrypt Flag</button>
+<pre id="flag"></pre>
+
+<h3>Encrypt Message (hex)</h3>
+<input id="msg" placeholder="41414141">
+<button onclick="encryptMsg()">Encrypt</button>
+<pre id="msgout"></pre>
+
+<h3>Source Code</h3>
+<pre id="source"></pre>
+
+<script>
+async function getPublic() {
+  let r = await fetch('/api/public');
+  document.getElementById('n').innerText = JSON.stringify(await r.json(), null, 2);
+}
+
+async function encryptFlag() {
+  let r = await fetch('/api/encrypt/flag', {method:'POST'});
+  document.getElementById('flag').innerText = JSON.stringify(await r.json(), null, 2);
+}
+
+async function encryptMsg() {
+  let msg = document.getElementById('msg').value;
+  let r = await fetch('/api/encrypt/message', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({message: msg})
+  });
+  document.getElementById('msgout').innerText = JSON.stringify(await r.json(), null, 2);
+}
+
+async function getSource() {
+  let r = await fetch('/api/source');
+  document.getElementById('source').innerHTML = await r.text();
+}
+
+getSource()
+</script>
+
+</body>
+</html>

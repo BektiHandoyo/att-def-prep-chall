@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+
+{% block title %}Insurance Report - MediSecure Report Generator{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/report-generator/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/report-generator/reports">Reports</a></li>
+                <li class="breadcrumb-item"><a href="/report-generator/standard_report">Standard Report</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Insurance Report</li>
+            </ol>
+        </nav>
+        <h1 class="display-6"><i class="bi bi-currency-dollar"></i> Patient Insurance Report</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-between align-items-center bg-success text-white">
+                <h5 class="m-0"><i class="bi bi-file-earmark-text"></i> MediSecure Hospital - Insurance Claim Report</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-light me-2" onclick="window.print()">
+                        <i class="bi bi-printer"></i> Print
+                    </button>
+                    <a href="/report-generator/standard_report" class="btn btn-sm btn-light">
+                        <i class="bi bi-arrow-left"></i> Back
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4 pb-3 border-bottom">
+                    <h3>Medical Insurance Claim Documentation</h3>
+                    <p class="text-muted">Prepared for: {{ patient.insurance }}</p>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Patient Information</h5>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <th class="table-light" width="40%">Patient Name:</th>
+                                <td>{{ patient.name }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Patient ID:</th>
+                                <td>{{ patient.id }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Date of Birth:</th>
+                                <td>{{ patient.dob }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Insurance ID:</th>
+                                <td>{{ patient.insurance }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Provider Information</h5>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <th class="table-light" width="40%">Facility Name:</th>
+                                <td>MediSecure Hospital</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Provider ID:</th>
+                                <td>MSH-12345</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Address:</th>
+                                <td>123 Health Street, Medical City, MC 12345</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Contact:</th>
+                                <td>billing@medisecure.example.com</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <h5 class="mb-3">Diagnosis Information</h5>
+                <div class="card bg-light mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Primary Diagnosis:</h6>
+                                <p class="mb-1">{{ patient.diagnosis }}</p>
+                                <small class="text-muted">ICD-10: {% if 'Hypertension' in patient.diagnosis %}I10{% elif 'Diabetes' in patient.diagnosis %}E11.9{% elif 'Asthma' in patient.diagnosis %}J45.909{% elif 'Migraine' in patient.diagnosis %}G43.909{% elif 'Arthritis' in patient.diagnosis %}M19.90{% else %}R69{% endif %}</small>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Relevant Health Factors:</h6>
+                                <ul class="mb-0 small">
+                                    <li>Blood Type: {{ patient.blood_type }}</li>
+                                    <li>Allergies: {{ patient.allergies or 'None reported' }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="mb-3">Treatment Summary</h5>
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Procedure Code</th>
+                            <th>Description</th>
+                            <th>Date of Service</th>
+                            <th class="text-end">Charge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>99213</td>
+                            <td>Office visit, established patient (Level 3)</td>
+                            <td>{{ current_date }}</td>
+                            <td class="text-end">$110.00</td>
+                        </tr>
+                        {% if 'Hypertension' in patient.diagnosis %}
+                        <tr>
+                            <td>93000</td>
+                            <td>Electrocardiogram, routine</td>
+                            <td>{{ current_date }}</td>
+                            <td class="text-end">$75.00</td>
+                        </tr>
+                        {% endif %}
+                        {% if 'Diabetes' in patient.diagnosis %}
+                        <tr>
+                            <td>82947</td>
+                            <td>Glucose quantitative blood test</td>
+                            <td>{{ current_date }}</td>
+                            <td class="text-end">$55.00</td>
+                        </tr>
+                        {% endif %}
+                        {% if 'Asthma' in patient.diagnosis %}
+                        <tr>
+                            <td>94010</td>
+                            <td>Spirometry test</td>
+                            <td>{{ current_date }}</td>
+                            <td class="text-end">$95.00</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                    <tfoot class="table-light">
+                        <tr>
+                            <th colspan="3" class="text-end">Total Charges:</th>
+                            <th class="text-end">
+                                {% if 'Hypertension' in patient.diagnosis %}
+                                $185.00
+                                {% elif 'Diabetes' in patient.diagnosis %}
+                                $165.00
+                                {% elif 'Asthma' in patient.diagnosis %}
+                                $205.00
+                                {% else %}
+                                $110.00
+                                {% endif %}
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <div class="alert alert-info mt-4">
+                    <div class="d-flex">
+                        <div class="me-3">
+                            <i class="bi bi-info-circle-fill" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h6>Coverage Verification</h6>
+                            <p class="mb-0">Patient coverage was verified on {{ current_date }} with {{ patient.insurance }}. Patient is responsible for applicable copays and deductibles as determined by their insurance plan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+                    <div>
+                        <p class="mb-0 text-muted"><small>Report ID: INS-{{ patient.id }}-{{ current_date_short }}</small></p>
+                    </div>
+                    <div>
+                        <p class="mb-0 text-muted"><small>Generated on: {{ current_time }}</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="small text-muted">
+                    <i class="bi bi-shield-check"></i> This document contains Protected Health Information (PHI) and is intended for insurance processing purposes only.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
