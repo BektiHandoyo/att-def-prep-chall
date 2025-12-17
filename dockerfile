@@ -61,7 +61,7 @@ RUN cp /flag/user.txt /home/blacktea/flag.txt \
  && chmod 400 /root/flag.txt
 
 # ===== Exposed ports =====
-EXPOSE 80 5000 8000 8080 31337
+EXPOSE 5001 5000 8000 8080 31337
 
 # ===== Entrypoint =====
 COPY entrypoint.sh /entrypoint.sh
