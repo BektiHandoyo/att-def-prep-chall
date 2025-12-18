@@ -8,6 +8,8 @@ from datetime import datetime
 # todo: use sandboxed environment to prevent vulnerability
 from jinja2.sandbox import SandboxedEnvironment
 
+with open("data.json") as f:
+    DUMMY_DB = json.load(f)["patients"]
 
 app = Flask(__name__)
 app_root = '/report-generator'
@@ -76,18 +78,10 @@ def custom_report():
     return render_template('custom_report_form.html')
 
 def get_patient_data(patient_id):
-    try:
-        response = requests.get(
-            f"{PATIENT_PORTAL_URL}{app_root}/api/patient/{patient_id}",
-            headers={'X-API-KEY': API_KEY}
-        )
-        
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return None
-    except:
-        return None
+    for patient in DUMMY_DB:
+        if str(patient["id"]) == str(patient_id):
+            return patient
+    return None
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001) 

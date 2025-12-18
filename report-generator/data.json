@@ -1,0 +1,181 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "name": "John Smith",
+      "dob": "1980-05-15",
+      "gender": "Male",
+      "blood_type": "A+",
+      "address": "123 Main St, Cityville",
+      "phone": "555-1234",
+      "insurance": "MediCorp #12345",
+      "allergies": "Penicillin",
+      "diagnosis": "Hypertension",
+      "medical_records": [
+        {
+          "id": 1,
+          "date": "2023-01-15",
+          "doctor": "Dr. Wilson",
+          "notes": "Patient presented with elevated blood pressure. Prescribed medication adjustment.",
+          "prescription": "Lisinopril 20mg daily"
+        },
+        {
+          "id": 2,
+          "date": "2023-03-20",
+          "doctor": "Dr. Wilson",
+          "notes": "Follow-up visit shows improved blood pressure control.",
+          "prescription": "Continue current medication"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Mary Johnson",
+      "dob": "1975-09-23",
+      "gender": "Female",
+      "blood_type": "O-",
+      "address": "456 Oak Ave, Townsville",
+      "phone": "555-5678",
+      "insurance": "HealthPlus #67890",
+      "allergies": "None",
+      "diagnosis": "Type 2 Diabetes",
+      "medical_records": [
+        {
+          "id": 3,
+          "date": "2023-02-10",
+          "doctor": "Dr. Martinez",
+          "notes": "Blood glucose levels elevated. Adjusted insulin dosage.",
+          "prescription": "NovoLog as directed"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Robert Lee",
+      "dob": "1990-03-10",
+      "gender": "Male",
+      "blood_type": "B+",
+      "address": "789 Pine Rd, Villagetown",
+      "phone": "555-9012",
+      "insurance": "CarePlus #24680",
+      "allergies": "Sulfa drugs",
+      "diagnosis": "Asthma",
+      "medical_records": [
+        {
+          "id": 4,
+          "date": "2023-01-05",
+          "doctor": "Dr. Jackson",
+          "notes": "Asthma exacerbation due to seasonal allergies.",
+          "prescription": "Albuterol inhaler PRN, Flonase daily"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Sarah Williams",
+      "dob": "1988-12-05",
+      "gender": "Female",
+      "blood_type": "AB-",
+      "address": "321 Elm Blvd, Hamletville",
+      "phone": "555-3456",
+      "insurance": "WellCare #13579",
+      "allergies": "Latex",
+      "diagnosis": "Migraine",
+      "medical_records": [
+        {
+          "id": 5,
+          "date": "2023-02-22",
+          "doctor": "Dr. Thompson",
+          "notes": "Migraine episodes increasing in frequency.",
+          "prescription": "Sumatriptan 50mg as needed"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "David Brown",
+      "dob": "1965-07-30",
+      "gender": "Male",
+      "blood_type": "A-",
+      "address": "654 Maple Dr, Boroughburg",
+      "phone": "555-7890",
+      "insurance": "LifeCare #97531",
+      "allergies": "Shellfish",
+      "diagnosis": "Arthritis",
+      "medical_records": [
+        {
+          "id": 6,
+          "date": "2023-03-15",
+          "doctor": "Dr. Davis",
+          "notes": "Joint pain worsening in cold weather.",
+          "prescription": "Ibuprofen 600mg TID"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Abdul Gareeb",
+      "dob": "1990-01-01",
+      "gender": "Male",
+      "blood_type": "A+",
+      "address": "123 Main St, Cityville",
+      "phone": "555-1234",
+      "insurance": "MediCorp #12345",
+      "allergies": "None",
+      "diagnosis": "None",
+      "medical_records": []
+    },
+    {
+      "id": 7,
+      "name": "Zachy Road",
+      "dob": "1990-01-01",
+      "gender": "Male",
+      "blood_type": "A+",
+      "address": "123 Main St, Cityville",
+      "phone": "555-1234",
+      "insurance": "MediCorp #12345",
+      "allergies": "None",
+      "diagnosis": "None",
+      "medical_records": []
+    },
+    {
+      "id": 8,
+      "name": "Zachary Stephens",
+      "dob": "1990-01-01",
+      "gender": "Male",
+      "blood_type": "A+",
+      "address": "123 Main St, Cityville",
+      "phone": "555-1234",
+      "insurance": "MediCorp #12345",
+      "allergies": "None",
+      "diagnosis": "None",
+      "medical_records": []
+    },
+    {
+      "id": 9,
+      "name": "Emily Clark",
+      "dob": "1995-06-18",
+      "gender": "Female",
+      "blood_type": "O+",
+      "address": "987 Cedar St, Metrocity",
+      "phone": "555-2222",
+      "insurance": "PrimeHealth #55555",
+      "allergies": "Peanuts",
+      "diagnosis": "Anxiety",
+      "medical_records": []
+    },
+    {
+      "id": 10,
+      "name": "Michael Turner",
+      "dob": "1972-11-02",
+      "gender": "Male",
+      "blood_type": "B-",
+      "address": "741 Birch Ln, Oldtown",
+      "phone": "555-8888",
+      "insurance": "SecureCare #88888",
+      "allergies": "None",
+      "diagnosis": "High Cholesterol",
+      "medical_records": []
+    }
+  ]
+}
