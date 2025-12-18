@@ -48,17 +48,18 @@ RUN echo "svcuser ALL=(root) NOPASSWD: /usr/bin/python3 /opt/malware-check/malwa
  && chmod 440 /etc/sudoers.d/malware
 
 # ===== Flags =====
-COPY flag /flag
+COPY flag /tmp/flag
 
-RUN cp /flag/user.txt /home/blacktea/flag.txt \
- && cp /flag/user.txt /home/svcuser/flag.txt \
- && cp /flag/root.txt /root/flag.txt \
+RUN cp /tmp/flag/user.txt /home/blacktea/flag.txt \
+ && cp /tmp/flag/user.txt /home/svcuser/flag.txt \
+ && cp /tmp/flag/root.txt /root/flag.txt \
  && chown blacktea:blacktea /home/blacktea/flag.txt \
  && chown svcuser:svcuser /home/svcuser/flag.txt \
  && chown root:root /root/flag.txt \
  && chmod 400 /home/blacktea/flag.txt \
  && chmod 400 /home/svcuser/flag.txt \
- && chmod 400 /root/flag.txt
+ && chmod 400 /root/flag.txt \
+ && rm -rf /tmp/flag
 
 # ===== Exposed ports =====
 EXPOSE 5001 5000 8000 8080 31337
