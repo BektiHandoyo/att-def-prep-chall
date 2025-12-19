@@ -16,7 +16,7 @@ const check = (req, res) => {
         });
     }
 
-    const filePath = `/home/encryptor/service/users/${registrationNumber}.json`;
+    const filePath = `/home/blacktea/service/users/${registrationNumber}.json`;
 
     execFile('cat', [filePath], (error, stdout, stderr) => {
         if (error) {

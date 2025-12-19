@@ -47,6 +47,15 @@ RUN echo "svcuser ALL=(root) NOPASSWD: /usr/bin/python3 /opt/malware-check/malwa
     > /etc/sudoers.d/malware \
  && chmod 440 /etc/sudoers.d/malware
 
+# ===== Malware-check permissions =====
+RUN groupadd malware
+RUN usermod -aG malware svcuser
+RUN chown -R root:malware /opt/malware-check \
+ && chmod 770 /opt/malware-check \
+ && chmod 660 /opt/malware-check/*.py \
+ && chmod 640 /opt/malware-check/keyword.txt
+RUN echo "umask 002" >> /etc/profile
+
 # ===== Flags =====
 COPY flag /tmp/flag
 
